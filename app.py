@@ -4,6 +4,7 @@ import pandas as pd
 import networkx as nx
 from pyvis.network import Network
 import numpy as np
+import json
 
 # Read dataset (CSV)
 df_interact = pd.read_csv('data/relation.csv')
@@ -67,8 +68,17 @@ else:
     components.html(HtmlFile.read(), height=435)
 
 st.markdown('#### Predict')
-st.dataframe(pd.read_csv('data/prediction.csv'))
+df = pd.read_csv('data/prediction.csv')
+st.dataframe(df)
 st.markdown('#### Analysis')
+ticker = st.selectbox('Select stock to see change', ticker_list)
+N = st.number_input(label="N = ", value = 5, min_value=0, max_value=100)
+with open('top_relation.json') as json_file:
+    top = json.load(json_file)
+st.write(f'Top {N} companies that are significantly affected by this predicted change:', ', '.join(top[ticker][:N]))
+changes = ["{} changes {}".format(ticker, list(df[df['Ticker'] == ticker]['Predict Change'])[0]) for ticker in top[ticker][:N]]
+tmp = list(df[df['Ticker'] == ticker]['Predict Change'])[0]
+st.write(f'{ticker} changes {tmp} leads to', '; '.join(changes))
 
 # Footer
 st.markdown(

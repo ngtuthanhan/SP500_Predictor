@@ -13,18 +13,18 @@ def save_sp500_tickers():
     resp = requests.get('http://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
     soup = bs.BeautifulSoup(resp.text, 'lxml')
     table = soup.find('table', {'class': 'wikitable sortable'})
-    tickets = []
+    tickers = []
     categories = []
     for row in table.findAll('tr')[1:]:
-        ticket = row.findAll('td')[0].text.strip()
+        ticker = row.findAll('td')[0].text.strip()
         category = row.findAll('td')[3].text.strip()
-        tickets.append(ticket)
+        tickers.append(ticker)
         categories.append(category)
-    df = pd.DataFrame.from_dict({'ticket': tickets, 'category': categories}).set_index('ticker')
+    df = pd.DataFrame.from_dict({'ticker': tickers, 'category': categories}).set_index('ticker')
     df.to_csv('data/sp500_companies.csv')
     with open("data/sp500tickers.pickle", "wb") as f:
-        pickle.dump(tickets, f)
-    return tickets
+        pickle.dump(tickers, f)
+    return tickers
 
 def get_data_from_yahoo(reload_sp500=False):
     if reload_sp500:

@@ -1,4 +1,5 @@
 # SP500_Predictor
+S&P500 Predictor based percentage change
 
 ### Step 1
 - Install Streamlit, Pyvis and NetworkX packages (See `requirements.txt`)
