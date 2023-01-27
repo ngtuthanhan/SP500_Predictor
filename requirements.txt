@@ -1,0 +1,10 @@
+pyvis
+st_aggrid
+plotly
+networkx
+tensorflow
+seaborn
+yfinance
+pandas_datareader
+requests
+bs4

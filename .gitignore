@@ -1,0 +1,12 @@
+correlation_matrix.npy
+ticket.npy
+./lib
+./pretrained
+./data/stock_dfs
+./data/prediction.csv
+./data/relation.csv
+./data/sp500_companies.csv
+./data/sp500tickers.pickle
+
+
+
