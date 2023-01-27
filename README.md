@@ -9,5 +9,5 @@
 ### Step 3
 - Open `model.ipynb` and run all
 
-### Step 3
+### Step 4
 - In CLI, execute `streamlit run app.py`
